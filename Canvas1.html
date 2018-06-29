@@ -1,0 +1,151 @@
+<!-- Assignment 7 -->
+<!-- By Nicholas Erickson -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Nick's Canvas</title>
+    
+    <script>
+        var canvas;
+        var ctx;
+
+        window.onload=function() {
+            canvas=document.getElementById("myCanvas");
+            ctx=canvas.getContext("2d");
+            
+            //Triangle
+            //set line width and color for all lines
+            //ctx.lineWidth= 20;
+            //ctx.strokeStyle="rgb(0,0,0)";
+            
+            
+            //start the triangle
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(250, 50);
+            ctx.lineTo(50,250);
+            ctx.lineTo(450,250);
+            ctx.closePath();
+            
+            //paint the inside
+            ctx.fillStyle="blue";
+            ctx.fill();
+            
+            //draw the outline
+            ctx.lineWidth=10;
+            ctx.strokeStyle="red";
+            ctx.stroke();
+            ctx.restore();
+            
+             //Circle
+             ctx.save();
+            var centerx=400;
+            var centery=200;
+            var radius=100;
+            var straightAngle=0;
+            var endingAngle=2*Math.PI;
+            
+            ctx.beginPath();
+            ctx.arc(centerx, centery, radius, straightAngle, endingAngle);
+            ctx.closePath();
+            
+            ctx.fillStyle="rgba(144,238,144,0.6)";
+            ctx.fill();
+            
+            ctx.lineWidth=5;
+            ctx.strokeStyle="purple";
+            ctx.stroke();
+            ctx.restore();
+                  
+            //Draw Rectangle
+            ctx.save();
+            ctx.lineWidth=10;
+            ctx.strokeStyle="orange";
+            ctx.strokeRect(600, 100, 200, 100);
+            ctx.fillStyle="green";
+            ctx.fillRect(600, 100, 200, 100);
+            ctx.restore();
+            
+            
+            //rectangle with gradient fill
+            var gradient3=ctx.createLinearGradient(400, 400, 480, 610);
+            gradient3.addColorStop("0", "red");
+            gradient3.addColorStop("0.17", "orange");
+            gradient3.addColorStop("0.34", "yellow");
+            gradient3.addColorStop("0.51", "green");
+            gradient3.addColorStop("0.68", "blue");
+            gradient3.addColorStop("0.85", "indigo");
+            gradient3.addColorStop("1.0", "violet");
+            
+            ctx.fillStyle=gradient3;
+            ctx.fillRect(400, 400, 300, 150);
+            
+            //Draw Heart
+            var gradient=ctx.createRadialGradient(200,430,2,200,380,100);
+            gradient.addColorStop("0","skyblue");
+            gradient.addColorStop("0.25", "deepskyblue");
+            gradient.addColorStop("0.50", "blue");
+            gradient.addColorStop("0.75", "darkblue");
+            gradient.addColorStop("1.0", "navy");
+            
+            ctx.save();
+            ctx.translate(200, 400);
+            ctx.rotate(Math.random()*6.28);
+            ctx.translate(-200, -400);
+            drawHeart(200, 400);
+                        
+            ctx.fillStyle=gradient;
+            ctx.fill();
+            
+            ctx.lineWidth=2;
+            ctx.strokeStyle="black";
+            ctx.stroke();
+
+            ctx.restore();
+            
+            // Draw Text
+            //ctx.rotate(10*Math.PI/180);
+            var gradient2 =ctx.createLinearGradient(600, 300, 620, 360);
+            gradient2.addColorStop("0", "red");
+            gradient2.addColorStop("0.25", "purple");
+            gradient2.addColorStop("0.50", "blue");
+            gradient2.addColorStop("0.75", "green");
+            gradient2.addColorStop("1.0", "magenta");
+            
+            ctx.save();
+            ctx.translate(600,300);
+            ctx.rotate(Math.random()*0.36643);
+            ctx.translate(-600, -300);
+            ctx.font="bold 40px arial";
+            ctx.fillText=gradient2;
+            ctx.strokeStyle=gradient2;
+            ctx.strokeText("Hello, World!", 600, 300);
+            
+            ctx.restore();
+
+        };
+        
+        function drawHeart(x, y) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.bezierCurveTo(x, y - 40, x - 45, y - 40, x - 48, y);
+            ctx.bezierCurveTo(x - 45, y + 30, x, y + 40, x, y + 80);
+            ctx.bezierCurveTo(x, y + 90, x + 45, y + 40, x + 45, y);
+            ctx.bezierCurveTo(x + 45, y - 30, x, y - 30, x, y);
+            ctx.closePath();
+        }
+        
+    </script>
+    
+</head>
+
+<body>
+    <canvas id="myCanvas" width="1000" height="600" style="border: 1px dashed #000000">
+        
+    </canvas>
+
+</body>
+</html>

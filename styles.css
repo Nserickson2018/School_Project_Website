@@ -1,0 +1,109 @@
+/* This is the style sheet for the informatics project
+ * by Nicholas Erckson, Malachi Melville, and Jacob Sikorski */
+
+
+/* Google Fonts that can be used in various areas
+ * 
+    font-family: 'Lobster', cursive;
+
+    font-family: 'Bree Serif', serif;
+
+    font-family: 'Rokkitt', serif;
+
+    font-family: 'Bungee Inline', cursive;
+
+    font-family: 'Tangerine', cursive;
+*/
+
+/*Makes autofocused input fields have a yellow background*/
+input:focus {
+    background: lightyellow;
+}
+
+/*Makes the required feilds stars red*/
+em {
+    font-weight: bold;
+    font-style: normal;
+    color: #f00;
+}
+h1 {
+    font-family: 'Bungee Inline', cursive;
+    color: white;
+}
+
+h2 {
+    font-family: 'Rokkitt', serif;
+}
+
+#tools {
+    text-align: right;
+}
+
+body {
+    background-color: white;
+}
+
+.container {
+    background-color: black;
+    width: 80%;
+    display: block;
+    margin: 0px auto;
+    border: solid;
+    border-color: #FFFFFF;
+    border-radius: 10px 10px 10px 10px;
+}
+
+aside {
+	display:block;
+	/*width:8%;*/
+    padding-right: 3%;
+	float:left;
+	border-radius: 10px 10px 10px 10px;
+}
+
+.gallery img {
+    margin: 5px;
+	padding: 5px;
+	width: 75px;
+	border: solid 1px black;
+	-ms-transition: all 1s;
+	-webkit-transition: all 1s;
+	transition: all 1s;
+	background: white;
+}
+
+.gallery img:hover {
+	-ms-transform: scale(2.8);
+	-webkit-transform: scale(2.8);
+	transform: scale(2.8);
+}
+
+#myPanel {
+    padding-top: 2%;
+}
+
+#edittemplate {
+    text-align: center;
+}
+
+/*#Verify {
+    color: red;
+}*/
+
+caption {
+    font-size: large;
+    font-weight: bold;
+}
+
+@media (max-width: 750px) {
+	.container {
+		background-color: black;
+        width: 100%;
+        display: block;
+        margin: 0px auto;
+        border: solid;
+        border-color: #FFFFFF;
+        /*border-radius: 10px 10px 10px 10px;*/
+	}
+    
+}

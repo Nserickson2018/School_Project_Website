@@ -1,0 +1,121 @@
+ <!DOCTYPE HTML> 
+<html> 
+<head>  <title>Nick's Canvas</title>
+	<style>
+		h1{
+			text-align: center;
+		}
+		
+		h2{
+			text-align: center;
+		}
+		
+		#this_canvas{
+			border: 3px solid blue;
+			border-radius: 10px;
+			height: 400px;
+			width: 50%;
+			position: absolute;
+			left: 25%;
+			right: 25%;
+			/*padding-left: 5%;
+			padding-right: 5%;*/
+			
+		}
+	</style>
+</head> 
+<body>
+	<header><h1>Canvas Animation</h1></header>
+	<h2>By: Nicholas Erickson</h2>
+	<canvas id="this_canvas"></canvas>
+	<script type="text/javascript"> 
+		var context = document.getElementById('this_canvas').getContext('2d');
+		//var my_image=new Image();
+		//my_image.src="ball.gif";
+	function getRandomColor() {
+		var letters = '0123456789ABCDEF';
+		var color = '#';
+		for (var i = 0; i < 6; i++ ) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
+	function ball(){
+		this.x=Math.random()*context.canvas.width;
+		this.y=Math.random()*context.canvas.height;
+		this.radius=Math.random()*30;
+		this.ballColor=getRandomColor();
+		this.strokecolor=getRandomColor();
+		this.vx=Math.random()*5;
+		this.vy=Math.random()*5;
+		this.move=ball_move;
+		this.draw=ball_draw;
+	}
+	function ball_move(){
+		this.x+=this.vx;
+		this.y+=this.vy;
+		
+		if (this.x+this.radius>context.canvas.width){
+			this.vx= -this.vx;
+		}
+		if (this.x-this.radius<0){
+			this.vx=-this.vx;
+		}
+		if (this.y+this.radius>context.canvas.height){
+			this.vy=-this.vy;
+		}
+		if (this.y-this.radius<0){
+			this.vy=-this.vy;
+		}
+	}
+	function ball_draw(){
+		context.beginPath();
+		context.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
+		context.fillStyle = this.ballColor;
+		context.fill();
+		context.lineWidth = 2;
+		context.strokeStyle = this.strokecolor;
+		context.stroke();
+	}
+	
+	var ball_array=[];
+	function begin(){
+		for(var i=0;i<100;i++){
+			var temp=new ball();
+			ball_array.push(temp);
+			}
+		
+	}
+	
+	function going(){
+
+						// erase ball
+		context.beginPath();
+		context.fillStyle='black';
+		context.rect(0,0,context.canvas.width,context.canvas.height);
+		context.fill();
+			
+						//move
+		var x;
+		for(x in ball_array){
+			ball_array[x].move();
+			ball_array[x].draw();
+		}
+	
+	}
+		
+		function resize_can(){
+		context.canvas.width=window.innerWidth;
+		context.canvas.height=window.innerHeight;
+	}
+		
+	window.onresize=resize_can;
+	onLoad=resize_can();
+	
+	onLoad=begin();
+	setInterval(going,10);
+		
+	</script> 
+ 
+</body> 
+</html>
